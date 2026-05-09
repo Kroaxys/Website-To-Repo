@@ -25,8 +25,8 @@ app.use(express.static('public'));
 //Sets the ratelimit for requests. Can send 5 request in 15 minutes
 //Express-rate-limit documentation https://www.npmjs.com/package/express-rate-limit
 const limiter = rateLimit({
-    windowMs: 1 * 60 * 60 * 1000, //1 hour
-    max: 5
+    windowMs: 24 * 60 * 60 * 1000, //1 day
+    max: 2
 })
 //Attaches the limiter to /submit-issue route
 app.use('/submit-issue', limiter);
