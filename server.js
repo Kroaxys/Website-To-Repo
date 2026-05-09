@@ -13,6 +13,7 @@ const rateLimit = require('express-rate-limit');
 // app.use() — a way to add middleware
 //DISCLAMER: This comment used AI in its creation
 const app = express()
+app.set('trust proxy', 1);
 const PORT = 3000
 
 //Middleware:
