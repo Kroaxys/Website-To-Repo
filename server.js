@@ -34,17 +34,18 @@ app.use('/submit-issue', limiter);
 //Listens and recives the POST request. Then executes the code inside the function
 //The code send three different types of information. The fact that it is a POST request, the github token aswell as the content type, the issue data
 app.post('/submit-issue', async function (req, res) {
-    const { title, body } = req.body;
+    const { title, body, labels } = req.body;
     const response = await fetch('https://api.github.com/repos/Kroaxys/Website-To-Repo/issues', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`, 'Content-Type': `application/json` },
-        body: JSON.stringify({ title, body })
+        body: JSON.stringify({ title, body, labels})
     })
     if (response.ok) {
         res.json({ success: true });
     }
     else { res.status(500).json({ success: false }) }
 })
+
 
 //Makes the code listen for requests
 app.listen(PORT, function(){console.log("Started")});
