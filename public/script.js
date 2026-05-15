@@ -4,12 +4,12 @@ document.querySelector('form').addEventListener('submit',async function(e){
     e.preventDefault();
     const title = document.getElementById('title').value
     const body = document.getElementById('description').value
-    const label = document.getElementById('label').value
-
+    const labels = Array.from(document.getElementById('labelPicker').selectedOptions).map(option => option.value)
+    console.log(labels)
     const response = await fetch('/submit-issue',{
         method: 'POST',
         headers: { 'Content-Type': `application/json` },
-        body: JSON.stringify({ title, body, labels: [label] })
+        body: JSON.stringify({ title, body, labels})
     })
     if(response.ok){
         document.getElementById('response').textContent = 'Success!';
